@@ -37,6 +37,9 @@ def main():
     # while True:
     all_comments = r.get_comments('leagueoflegends', limit=None)
 
+    # Timestamp
+    start_time = time.time()
+
     for comment in all_comments:
         if comment.id not in processed_deque:
             found_names = find_names(comment, space_names, single_names)
@@ -48,7 +51,8 @@ def main():
                 print(comment.permalink)
                 print()
 
-        # time.sleep(3)
+    print(((time.time() - start_time)/60), len(processed_deque), ((time.time() - start_time)/len(processed_deque)))
+    # time.sleep(3)
 
 
 def find_names(comment, space_names, single_names):
